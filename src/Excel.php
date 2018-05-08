@@ -23,11 +23,35 @@ class Excel
     private $sheet = null;
 
     /**
+     * Active sheet we are working on.
+     */
+    private $activesheet = 0;
+
+    /**
      * Creates a new spreadsheet.
+     *
+     * @param string $title Title for the Worksheet
      */
     public function __construct($title)
     {
         $this->spreadsheet = new Spreadsheet();
+        $this->sheet = $this->spreadsheet->getActiveSheet();
+
+        $this->sheet->setShowGridlines(true);
+        $this->sheet->setTitle($title);
+    }
+
+    /**
+     * Creates a new sheet and makes the new sheet the active sheet.
+     *
+     * @param string $title Title for the Worksheet
+     */
+    public function createsheet($title)
+    {
+        $this->activesheet++;
+
+        $this->spreadsheet->createsheet();
+        $this->spreadsheet->setActiveSheetIndex($this->activesheet);
         $this->sheet = $this->spreadsheet->getActiveSheet();
 
         $this->sheet->setShowGridlines(true);
