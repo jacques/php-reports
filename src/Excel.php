@@ -59,6 +59,22 @@ class Excel
     }
 
     /**
+     * Retreive the active sheet.
+     */
+    public function getActiveSheet()
+    {
+        return $this->spreadsheet->getActiveSheet();
+    }
+
+    /**
+     * Get properties for the spreadsheet.
+     */
+    public function getProperties()
+    {
+        return $this->spreadsheet->getProperties();
+    }
+
+    /**
      * Apply header styles over multiple rows making up the header.
      *
      * @param string $cells Columns for the first row (i.e. A1:Z1).
