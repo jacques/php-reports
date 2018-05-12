@@ -1,5 +1,11 @@
 # Reports
 
+[![Author](http://img.shields.io/badge/author-@jacques-blue.svg?style=flat-square)](https://twitter.com/jacques)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jacques/php-reports/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jacques/php-reports/?branch=master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/750d2130ab688f3d8031/maintainability)](https://codeclimate.com/github/jacques/php-reports/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/750d2130ab688f3d8031/test_coverage)](https://codeclimate.com/github/jacques/php-reports/test_coverage)
+
 > Helpers for building reports with PHP (i.e. Excel Spreadsheets).
 
 ---
@@ -17,6 +23,14 @@ $ composer require jacques/php-reports:dev-master
     }
 }
 ```
+
+---
+
+## Usage
+
+
+
+---
 
 ## License
 
