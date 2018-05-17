@@ -41,6 +41,16 @@ class Excel
         $this->sheet->setTitle($title);
     }
 
+    public function getActiveSheet()
+    {
+        return $this->spreadsheet->getActiveSheet();
+    }
+
+    public function getProperties()
+    {
+        return $this->spreadsheet->getProperties();
+    }
+
     /**
      * Creates a new sheet and makes the new sheet the active sheet.
      *
@@ -139,8 +149,12 @@ class Excel
      */
     public function applyAutoSize($firstCell, $lastCell)
     {
-        foreach (range($firstCell, $lastCell) as $col) {
+        $col = $firstCell;
+        $lastCell++;
+
+        while ($col != $lastCell) {
             $this->sheet->getColumnDimension($col)->setAutoSize(true);
+            $col++;
         }
     }
 
