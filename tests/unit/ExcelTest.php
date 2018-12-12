@@ -8,7 +8,7 @@ namespace Jacques\Reports\Tests\Unit;
 
 use Jacques\Reports\Excel;
 
-class Test extends \PHPUnit_Framework_TestCase
+class Test extends \PHPUnit\Framework\TestCase
 {
     /**
      * Sets up the fixture, for example, opens a network connection.
