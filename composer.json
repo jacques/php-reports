@@ -7,7 +7,7 @@
     },
     "require": {
         "php": "^7.0",
-        "phpoffice/phpspreadsheet": "^1.4"
+        "phpoffice/phpspreadsheet": "^1.6"
     },
     "require-dev": {
         "codeclimate/php-test-reporter": "^0.4.4",
