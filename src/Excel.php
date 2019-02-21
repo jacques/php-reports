@@ -75,6 +75,17 @@ class Excel
     }
 
     /**
+     * Set the active sheet index by the name of the sheet.
+     *
+     * @param string $name
+     */
+    public function setActiveSheetIndexByName($name)
+    {
+        $this->spreadsheet->setActiveSheetIndexByName($name);
+        $this->sheet = $this->spreadsheet->getActiveSheet();
+    }
+
+    /**
      * Apply header styles over multiple rows making up the header.
      *
      * @param string $cells Columns for the first row (i.e. A1:Z1).
