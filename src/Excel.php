@@ -74,6 +74,21 @@ class Excel
         return $this->spreadsheet->getProperties();
     }
 
+    public function removeSheetByIndex($index)
+    {
+        $this->spreadsheet->removeSheetByIndex($index);
+    }
+
+    public function getIndex($index)
+    {
+        return $this->spreadsheet->getIndex($index);
+    }
+
+    public function getSheetByName($name)
+    {
+        return $this->spreadsheet->getSheetByName($name);
+    }
+
     /**
      * Set the active sheet index by the name of the sheet.
      *
