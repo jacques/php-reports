@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * @author    Jacques Marneweck <jacques@siberia.co.za>
  * @copyright 2018-2019 Jacques Marneweck.  All rights strictly reserved.
@@ -13,17 +13,18 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 class Excel
 {
     /**
-     * @var \PhpOffice\PhpSpreadsheet\Spreadsheet|null
+     * @var \PhpOffice\PhpSpreadsheet\Spreadsheet
      */
-    private $spreadsheet = null;
+    private $spreadsheet;
 
     /**
-     * @var \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet|null
+     * @var \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
      */
-    private $sheet = null;
+    private $sheet;
 
     /**
      * Active sheet we are working on.
+     * @var integer
      */
     private $activesheet = 0;
 
