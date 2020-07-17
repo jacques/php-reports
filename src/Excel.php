@@ -33,7 +33,7 @@ class Excel
      *
      * @param string $title Title for the Worksheet
      */
-    public function __construct($title)
+    public function __construct(string $title)
     {
         $this->spreadsheet = new Spreadsheet();
         $this->sheet = $this->spreadsheet->getActiveSheet();
@@ -55,6 +55,7 @@ class Excel
 
         $this->spreadsheet->createsheet();
         $this->spreadsheet->setActiveSheetIndex($this->activesheet);
+
         $this->sheet = $this->spreadsheet->getActiveSheet();
 
         $this->sheet->setShowGridlines(true);
