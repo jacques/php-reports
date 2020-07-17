@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 /**
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2018-2019 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2018-2020 Jacques Marneweck.  All rights strictly reserved.
  */
 
 namespace Jacques\Reports;
@@ -46,8 +46,10 @@ class Excel
      * Creates a new sheet and makes the new sheet the active sheet.
      *
      * @param string $title Title for the Worksheet
+     *
+     * @return void
      */
-    public function createsheet($title)
+    public function createsheet(string $title): void
     {
         $this->activesheet++;
 
@@ -61,31 +63,49 @@ class Excel
 
     /**
      * Retreive the active sheet.
+     *
+     * @return \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
      */
-    public function getActiveSheet()
+    public function getActiveSheet(): \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
     {
         return $this->spreadsheet->getActiveSheet();
     }
 
     /**
      * Get properties for the spreadsheet.
+     *
+     * @return \PhpOffice\PhpSpreadsheet\Document\Properties
      */
-    public function getProperties()
+    public function getProperties(): \PhpOffice\PhpSpreadsheet\Document\Properties
     {
         return $this->spreadsheet->getProperties();
     }
 
-    public function removeSheetByIndex($index)
+    public function removeSheetByIndex(int $index): void
     {
         $this->spreadsheet->removeSheetByIndex($index);
     }
 
-    public function getIndex($index)
+    /**
+     * Get index for sheet.
+     *
+     * @param string $index
+     *
+     * @return int
+     */
+    public function getIndex(): int
     {
-        return $this->spreadsheet->getIndex($index);
+        return $this->spreadsheet->getIndex($this->sheet);
     }
 
-    public function getSheetByName($name)
+    /**
+     * Gets a sheet by name.
+     *
+     * @param string $name
+     *
+     * @return \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet|null
+     */
+    public function getSheetByName(string $name): ?\PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
     {
         return $this->spreadsheet->getSheetByName($name);
     }
@@ -95,7 +115,7 @@ class Excel
      *
      * @param string $name
      */
-    public function setActiveSheetIndexByName($name)
+    public function setActiveSheetIndexByName(string $name): void
     {
         $this->spreadsheet->setActiveSheetIndexByName($name);
         $this->sheet = $this->spreadsheet->getActiveSheet();
@@ -106,7 +126,7 @@ class Excel
      *
      * @param string $cells Columns for the first row (i.e. A1:Z1).
      */
-    public function applyHeaderStyleSingleRow($cells)
+    public function applyHeaderStyleSingleRow(string $cells): void
     {
         $styleArray = [
             'font' => [
@@ -130,8 +150,10 @@ class Excel
      *
      * @param string $firstRowCells Columns for the first row (i.e. A1:Z1).
      * @param string $lastRowCells  Columns for the last row of the header (i.e. A2:Z2).
+     *
+     * @return void
      */
-    public function applyHeaderStylesMultipleRows($firstRowCells, $lastRowCells)
+    public function applyHeaderStylesMultipleRows(string $firstRowCells, string $lastRowCells): void
     {
         $styleArray = [
             'font' => [
@@ -163,14 +185,18 @@ class Excel
      *
      * @param string $firstCell First column (i.e. A)
      * @param string $lastcell  Last column (i.e. Z)
+     *
+     * @return void
      */
-    public function applyAutoSize($firstCell, $lastCell)
+    public function applyAutoSize(string $firstCell, string $lastCell): void
     {
         $col = $firstCell;
+        /** @psalm-suppress StringIncrement */
         $lastCell++;
 
         while ($col != $lastCell) {
             $this->sheet->getColumnDimension($col)->setAutoSize(true);
+            /** @psalm-suppress StringIncrement */
             $col++;
         }
     }
@@ -179,14 +205,16 @@ class Excel
      * Save the spreadsheet.
      *
      * @param string $filename
+     *
+     * @return void
      */
-    public function save($filename)
+    public function save(string $filename): void
     {
         $writer = IOFactory::createWriter($this->spreadsheet, 'Xlsx');
         $writer->save($filename);
     }
 
-    public function __call($name, $args)
+    public function __call(string $name, array $args)
     {
         return (call_user_func_array(array($this->sheet, $name), $args));
     }
