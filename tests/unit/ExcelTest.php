@@ -1,7 +1,7 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2018 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2018-2020 Jacques Marneweck.  All rights strictly reserved.
  */
 
 namespace Jacques\Reports\Tests\Unit;
@@ -14,7 +14,7 @@ class Test extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
     }
 
@@ -22,11 +22,11 @@ class Test extends \PHPUnit\Framework\TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 
-    public function testExample()
+    public function testExample(): void
     {
         $spreadsheet = new \Jacques\Reports\Excel('TEST');
         self::assertInstanceOf('\Jacques\Reports\Excel', $spreadsheet);
