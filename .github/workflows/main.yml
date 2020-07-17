@@ -6,11 +6,16 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    
     steps:
     - uses: actions/checkout@v1
+    - name: use https instead of http
+      run: git config --global url.https://github.com/.insteadOf ssh://git@github.com/
     - name: composer install
-      run: composer install --prefer-dist
+      run: composer install --prefer-dist --no-progress
     - name: composer test
       run: composer test
-
+    - name: codecov
+      run: bash <(curl -s https://codecov.io/bash)
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
