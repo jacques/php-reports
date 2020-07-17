@@ -194,7 +194,7 @@ class Excel
         /** @psalm-suppress StringIncrement */
         $lastCell++;
 
-        while ($col != $lastCell) {
+        while ($col !== $lastCell) {
             $this->sheet->getColumnDimension($col)->setAutoSize(true);
             /** @psalm-suppress StringIncrement */
             $col++;
@@ -216,6 +216,6 @@ class Excel
 
     public function __call(string $name, array $args)
     {
-        return (call_user_func_array(array($this->sheet, $name), $args));
+        return (\call_user_func_array(array($this->sheet, $name), $args));
     }
 }
