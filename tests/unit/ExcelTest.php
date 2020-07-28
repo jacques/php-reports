@@ -61,6 +61,8 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
         $spreadsheet->setCellValue('B3', 'Soap');
         $spreadsheet->setCellValue('C3', 'joe@example.com');
 
+        $spreadsheet->applyHeaderStylesMultipleRows('A1:C1', 'B1:B3');
+
         $spreadsheet->save('foo.xlsx');
 
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
@@ -97,5 +99,8 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
         self::assertEquals('Last Name', $spreadsheet->getActiveSheet()->getCell('B2'));
         self::assertEquals('Email', $spreadsheet->getActiveSheet()->getCell('C2'));
 
+        $spreadsheet->setActiveSheetIndexByName('TEST');
+
+        self::assertEquals('TEST', $spreadsheet->getActiveSheet()->getTitle());
     }
 }
