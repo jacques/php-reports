@@ -73,6 +73,14 @@ class Excel
     }
 
     /**
+     * Retreive the active sheet.
+     */
+    public function getDefaultStyle(): \PhpOffice\PhpSpreadsheet\Style\Style
+    {
+        return $this->spreadsheet->getDefaultStyle();
+    }
+
+    /**
      * Get properties for the spreadsheet.
      *
      * @return \PhpOffice\PhpSpreadsheet\Document\Properties
@@ -141,6 +149,15 @@ class Excel
                     'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
                 ],
             ],
+            'fill' => [
+                'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                'startColor' => [
+                    'argb' => 'FFA0A0A0',
+                ],
+                'endColor' => [
+                    'argb' => 'FFA0A0A0',
+                ],
+            ],
         ];
 
         $this->sheet->getStyle($cells)->applyFromArray($styleArray);
@@ -163,6 +180,15 @@ class Excel
             'borders' => [
                 'top' => [
                     'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
+                ],
+            ],
+            'fill' => [
+                'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                'startColor' => [
+                    'argb' => 'FFA0A0A0',
+                ],
+                'endColor' => [
+                    'argb' => 'FFA0A0A0',
                 ],
             ],
         ];
