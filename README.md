@@ -28,7 +28,19 @@ $ composer require jacques/php-reports:dev-master
 
 ## Usage
 
+```php
+<?php declare(strict_types=1);
 
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$report = new \Jacques\Reports\Excel('Cover Sheet');
+$report->setCellValue('B2', 'Report Name');
+$report->setCellValue('B4', 'Description');
+
+$report->createSheet('User');
+
+$report->save(__DIR__.'/tmp/file.xlsx');
+```
 
 ---
 
