@@ -12,21 +12,14 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Excel
 {
-    /**
-     * @var \PhpOffice\PhpSpreadsheet\Spreadsheet
-     */
-    private $spreadsheet;
+    private \PhpOffice\PhpSpreadsheet\Spreadsheet $spreadsheet;
+
+    private \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $sheet;
 
     /**
-     * @var \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
+     * Index of the active worksheet that we are working on.
      */
-    private $sheet;
-
-    /**
-     * Active sheet we are working on.
-     * @var integer
-     */
-    private $activesheet = 0;
+    private int $activesheet = 0;
 
     /**
      * Creates a new spreadsheet.
@@ -73,14 +66,6 @@ class Excel
     }
 
     /**
-     * Retreive the active sheet.
-     */
-    public function getDefaultStyle(): \PhpOffice\PhpSpreadsheet\Style\Style
-    {
-        return $this->spreadsheet->getDefaultStyle();
-    }
-
-    /**
      * Get properties for the spreadsheet.
      *
      * @return \PhpOffice\PhpSpreadsheet\Document\Properties
@@ -88,11 +73,6 @@ class Excel
     public function getProperties(): \PhpOffice\PhpSpreadsheet\Document\Properties
     {
         return $this->spreadsheet->getProperties();
-    }
-
-    public function removeSheetByIndex(int $index): void
-    {
-        $this->spreadsheet->removeSheetByIndex($index);
     }
 
     /**
@@ -105,18 +85,6 @@ class Excel
     public function getIndex(): int
     {
         return $this->spreadsheet->getIndex($this->sheet);
-    }
-
-    /**
-     * Gets a sheet by name.
-     *
-     * @param string $name
-     *
-     * @return \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet|null
-     */
-    public function getSheetByName(string $name): ?\PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
-    {
-        return $this->spreadsheet->getSheetByName($name);
     }
 
     /**
@@ -241,8 +209,33 @@ class Excel
         $writer->save($filename);
     }
 
+    /**
+     * @param string $name
+     * @param array $args
+     */
     public function __call(string $name, array $args)
     {
+        /**
+         * Certain calls we need to send perform against the workbook and not a
+         * worksheet.
+         */
+        if (\in_array($name, [
+            'getActiveSheet',
+            'getActiveSheetIndex',
+            'getDefaultStyle',
+            'getProperties',
+            'getSheet',
+            'getAllSheets',
+            'getSheetByCodeName',
+            'getSheetByName',
+            'getSheetCount',
+            'getSheetNames',
+            'removeSheetByIndex',
+            'sheetNameExists',
+        ])) {
+            return (\call_user_func_array(array($this->spreadsheet, $name), $args));
+        }
+
         return (\call_user_func_array(array($this->sheet, $name), $args));
     }
 }

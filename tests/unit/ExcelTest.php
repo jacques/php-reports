@@ -6,6 +6,7 @@
 
 namespace Jacques\Reports\Tests\Unit;
 
+use Brick\VarExporter\VarExporter;
 use Jacques\Reports\Excel;
 
 class ExcelTest extends \PHPUnit\Framework\TestCase
@@ -30,6 +31,12 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
     {
         $spreadsheet = new \Jacques\Reports\Excel('TEST');
         self::assertInstanceOf('\Jacques\Reports\Excel', $spreadsheet);
+
+        $properties = $spreadsheet->getProperties();
+        self::assertEquals('Unknown Creator', $properties->getCreator());
+        $properties->setCreator('Bilbo Baggins');
+        $properties->setLastModifiedBy('Gandalf the Grey');
+        $properties->setCompany('The Shire Inc');
 
         self::assertEquals('Calibri', $spreadsheet->getDefaultStyle()->getFont()->getName());
         self::assertEquals(11, $spreadsheet->getDefaultStyle()->getFont()->getSize());
@@ -64,6 +71,9 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
         $spreadsheet->applyHeaderStylesMultipleRows('A1:C1', 'B1:B3');
 
         $spreadsheet->save('foo.xlsx');
+
+        $spreadsheet->removeSheetByIndex(1);
+        self::assertCount(1, $spreadsheet->getSheetNames());
 
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
         $spreadsheet = $reader->load('foo.xlsx');
@@ -102,5 +112,12 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
         $spreadsheet->setActiveSheetIndexByName('TEST');
 
         self::assertEquals('TEST', $spreadsheet->getActiveSheet()->getTitle());
+
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $properties = $spreadsheet->getProperties();
+        self::assertEquals('Bilbo Baggins', $properties->getCreator());
+        self::assertEquals('Gandalf the Grey', $properties->getLastModifiedBy());
+        self::assertEquals('The Shire Inc', $properties->getCompany());
     }
 }
