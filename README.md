@@ -6,7 +6,9 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/750d2130ab688f3d8031/maintainability)](https://codeclimate.com/github/jacques/php-reports/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/750d2130ab688f3d8031/test_coverage)](https://codeclimate.com/github/jacques/php-reports/test_coverage)
 
-> Helpers for building reports with PHP (i.e. Excel Spreadsheets).
+> Helpers for building reports with PHP (i.e. Excel Spreadsheets).  Use the
+> [phpspreadsheet](https://github.com/phpoffice/phpspreadsheet) package to generate
+> the Excel Spreadsheet.
 
 ---
 
