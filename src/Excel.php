@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 /**
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2018-2020 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2018-2021 Jacques Marneweck.  All rights strictly reserved.
  */
 
 namespace Jacques\Reports;
@@ -91,6 +91,8 @@ class Excel
      * Set the active sheet index by the name of the sheet.
      *
      * @param string $name
+     *
+     * @return void
      */
     public function setActiveSheetIndexByName(string $name): void
     {
@@ -102,6 +104,8 @@ class Excel
      * Apply header styles over multiple rows making up the header.
      *
      * @param string $cells Columns for the first row (i.e. A1:Z1).
+     *
+     * @return void
      */
     public function applyHeaderStyleSingleRow(string $cells): void
     {
@@ -192,6 +196,26 @@ class Excel
         while ($col !== $lastCell) {
             $this->sheet->getColumnDimension($col)->setAutoSize(true);
             /** @psalm-suppress StringIncrement */
+            $col++;
+        }
+    }
+
+    /**
+     * Set the the column width to specified column sizes
+     *
+     * @param string $firstCell First column (i.e. A)
+     * @param string $lastCell  Last column (i.e. Z)
+     * @param array  $sizes     Array of columns in character units
+     * @see   https://phpspreadsheet.readthedocs.io/en/latest/topics/recipes/#setting-a-columns-width
+     */
+    public function applySizePerColumn($firstCell, $lastCell, $sizes): void
+    {
+        $col = $firstCell;
+        $lastCell++;
+        $pos = 0;
+
+        while ($col != $lastCell) {
+            $this->sheet->getColumnDimension($col)->setWidth($sizes[$col]);
             $col++;
         }
     }
