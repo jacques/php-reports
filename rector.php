@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 /**
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2020 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2020-2021 Jacques Marneweck.  All rights strictly reserved.
  */
 
 use Rector\Core\Configuration\Option;
@@ -15,8 +15,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $parameters->set(Option::SETS, [
         SetList::CODE_QUALITY,
+        SetList::CODE_QUALITY_STRICT,
         SetList::CODING_STYLE,
         SetList::PERFORMANCE,
+        SetList::PHPUNIT_60,
+        SetList::PHPUNIT_70,
+        SetList::PHPUNIT_75,
         SetList::PHPUNIT_80,
         SetList::PHPUNIT_90,
         SetList::PHPUNIT_91,
