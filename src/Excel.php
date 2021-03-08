@@ -201,6 +201,25 @@ class Excel
     }
 
     /**
+     * Set the same column width to specified column range.
+     *
+     * @param string $firstCell First column (i.e. A)
+     * @param string $lastCell  Last column (i.e. Z)
+     * @param float  $size      Array of columns in character units
+     * @see   https://phpspreadsheet.readthedocs.io/en/latest/topics/recipes/#setting-a-columns-width
+     */
+    public function applySameSizePerColumn(string $firstCell, string $lastCell, float $size): void
+    {
+        $col = $firstCell;
+        $lastCell++;
+
+        while ($col != $lastCell) {
+            $this->sheet->getColumnDimension($col)->setWidth($size);
+            $col++;
+        }
+    }
+
+    /**
      * Set the the column width to specified column sizes
      *
      * @param string $firstCell First column (i.e. A)
