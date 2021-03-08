@@ -231,7 +231,6 @@ class Excel
     {
         $col = $firstCell;
         $lastCell++;
-        $pos = 0;
 
         while ($col != $lastCell) {
             $this->sheet->getColumnDimension($col)->setWidth($sizes[$col]);
