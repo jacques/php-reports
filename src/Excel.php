@@ -56,16 +56,6 @@ class Excel
     }
 
     /**
-     * Retreive the active sheet.
-     *
-     * @return \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
-     */
-    public function getActiveSheet(): \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
-    {
-        return $this->spreadsheet->getActiveSheet();
-    }
-
-    /**
      * Get properties for the spreadsheet.
      *
      * @return \PhpOffice\PhpSpreadsheet\Document\Properties
@@ -73,18 +63,6 @@ class Excel
     public function getProperties(): \PhpOffice\PhpSpreadsheet\Document\Properties
     {
         return $this->spreadsheet->getProperties();
-    }
-
-    /**
-     * Get index for sheet.
-     *
-     * @param string $index
-     *
-     * @return int
-     */
-    public function getIndex(): int
-    {
-        return $this->spreadsheet->getIndex($this->sheet);
     }
 
     /**
@@ -206,6 +184,9 @@ class Excel
      * @param string $firstCell First column (i.e. A)
      * @param string $lastCell  Last column (i.e. Z)
      * @param float  $size      Array of columns in character units
+     *
+     * @return void
+     *
      * @see   https://phpspreadsheet.readthedocs.io/en/latest/topics/recipes/#setting-a-columns-width
      */
     public function applySameSizePerColumn(string $firstCell, string $lastCell, float $size): void
@@ -225,9 +206,12 @@ class Excel
      * @param string $firstCell First column (i.e. A)
      * @param string $lastCell  Last column (i.e. Z)
      * @param array  $sizes     Array of columns in character units
+     *
+     * @return void
+     *
      * @see   https://phpspreadsheet.readthedocs.io/en/latest/topics/recipes/#setting-a-columns-width
      */
-    public function applySizePerColumn($firstCell, $lastCell, $sizes): void
+    public function applySizePerColumn(string $firstCell, string $lastCell, array $sizes): void
     {
         $col = $firstCell;
         $lastCell++;
@@ -268,6 +252,7 @@ class Excel
             'getProperties',
             'getSheet',
             'getAllSheets',
+            'getIndex',
             'getSheetByCodeName',
             'getSheetByName',
             'getSheetCount',

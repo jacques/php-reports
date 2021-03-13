@@ -100,12 +100,16 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
         $spreadsheet->setActiveSheetIndexByName('TEST');
         self::assertEquals('TEST', $spreadsheet->getActiveSheet()->getTitle());
 
+        self::assertEquals(0, $spreadsheet->getIndex($spreadsheet->getActiveSheet()));
+
         $spreadsheet->setActiveSheetIndexByName('Summary');
         self::assertEquals('Summary', $spreadsheet->getActiveSheet()->getTitle());
+        self::assertEquals(1, $spreadsheet->getIndex($spreadsheet->getActiveSheet()));
         $spreadsheet->save('foo.xlsx');
 
         $spreadsheet->removeSheetByIndex(1);
         self::assertCount(1, $spreadsheet->getSheetNames());
+        unset($spreadsheet);
 
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
         $spreadsheet = $reader->load('foo.xlsx');
