@@ -38,11 +38,17 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
         $properties->setLastModifiedBy('Gandalf the Grey');
         $properties->setCompany('The Shire Inc');
 
+        $properties = $spreadsheet->getProperties();
+        self::assertEquals('The Shire Inc', $properties->getCompany());
+
         self::assertEquals('Calibri', $spreadsheet->getDefaultStyle()->getFont()->getName());
         self::assertEquals(11, $spreadsheet->getDefaultStyle()->getFont()->getSize());
 
         $spreadsheet->getDefaultStyle()->getFont()->setName('Gill Sans');
         $spreadsheet->getDefaultStyle()->getFont()->setSize(12);
+
+        self::assertEquals('Gill Sans', $spreadsheet->getDefaultStyle()->getFont()->getName());
+        self::assertEquals(12, $spreadsheet->getDefaultStyle()->getFont()->getSize());
 
         $spreadsheet->setCellValue('A1', 'First Name');
         $spreadsheet->setCellValue('B1', 'Last Name');
@@ -56,6 +62,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
         $spreadsheet->applyHeaderStyleSingleRow('A1:C1');
 
         $spreadsheet->createSheet('Summary');
+        self::assertEquals('Summary', $spreadsheet->getActiveSheet()->getTitle());
 
         $spreadsheet->setCellValue('A1', 'Personal Details');
         $spreadsheet->mergeCells('A1:C1');
@@ -68,8 +75,33 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
         $spreadsheet->setCellValue('B3', 'Soap');
         $spreadsheet->setCellValue('C3', 'joe@example.com');
 
-        $spreadsheet->applyHeaderStylesMultipleRows('A1:C1', 'B1:B3');
+        $spreadsheet->applyHeaderStylesMultipleRows('A1:C1', 'A2:C2');
 
+        $spreadsheet->applySizePerColumn('A', 'C', [
+            'A' => '10',
+            'B' => '20',
+            'C' => '30',
+        ]);
+        self::assertEquals('10', $spreadsheet->getColumnDimension('A')->getWidth());
+        self::assertEquals('20', $spreadsheet->getColumnDimension('B')->getWidth());
+        self::assertEquals('30', $spreadsheet->getColumnDimension('C')->getWidth());
+
+        $spreadsheet->applySameSizePerColumn('D', 'E', 50);
+        self::assertEquals('50', $spreadsheet->getColumnDimension('D')->getWidth());
+        self::assertEquals('50', $spreadsheet->getColumnDimension('E')->getWidth());
+
+        $spreadsheet->setCellValue('D2', 'Location');
+        $spreadsheet->setCellValue('E2', 'Continent');
+        $spreadsheet->setCellValue('D3', 'Cape Town, South Africa');
+        $spreadsheet->setCellValue('E3', 'Africa');
+
+        $spreadsheet->applyHeaderStylesMultipleRows('A1:E1', 'A2:E2');
+
+        $spreadsheet->setActiveSheetIndexByName('TEST');
+        self::assertEquals('TEST', $spreadsheet->getActiveSheet()->getTitle());
+
+        $spreadsheet->setActiveSheetIndexByName('Summary');
+        self::assertEquals('Summary', $spreadsheet->getActiveSheet()->getTitle());
         $spreadsheet->save('foo.xlsx');
 
         $spreadsheet->removeSheetByIndex(1);
@@ -88,6 +120,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
         self::assertEquals('Summary', $spreadsheet->getActiveSheet()->getTitle());
 
         $spreadsheet->setActiveSheetIndex(0);
+        self::assertEquals(0, $spreadsheet->getIndex($spreadsheet->getActiveSheet()));
 
         self::assertEquals('TEST', $spreadsheet->getActiveSheet()->getTitle());
 
