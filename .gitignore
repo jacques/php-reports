@@ -1,5 +1,7 @@
 1
 build
 composer.lock
+foo.xlsx
 tests/.phpunit.result.cache
 vendor
+~$foo.xlsx
