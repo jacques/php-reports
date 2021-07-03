@@ -60,6 +60,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
 
         $spreadsheet->applyAutoSize('A', 'C');
         $spreadsheet->applyHeaderStyleSingleRow('A1:C1');
+        $spreadsheet->drawborders($spreadsheet, 'A2:C2', 'outer');
 
         $spreadsheet->createSheet('Summary');
         self::assertEquals('Summary', $spreadsheet->getActiveSheet()->getTitle());
@@ -78,11 +79,11 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
         $spreadsheet->applyHeaderStylesMultipleRows('A1:C1', 'A2:C2');
 
         $spreadsheet->applySizePerColumn('A', 'C', [
-            'A' => '10',
-            'B' => '20',
-            'C' => '30',
+            'A' => 10,
+            'B' => 20,
+            'C' => 30,
         ]);
-        self::assertEquals('10', $spreadsheet->getColumnDimension('A')->getWidth());
+        self::assertEquals(10, $spreadsheet->getColumnDimension('A')->getWidth());
         self::assertEquals('20', $spreadsheet->getColumnDimension('B')->getWidth());
         self::assertEquals('30', $spreadsheet->getColumnDimension('C')->getWidth());
 
@@ -96,6 +97,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
         $spreadsheet->setCellValue('E3', 'Africa');
 
         $spreadsheet->applyHeaderStylesMultipleRows('A1:E1', 'A2:E2');
+        $spreadsheet->drawborders($spreadsheet, 'A3:E3', 'all');
 
         $spreadsheet->setActiveSheetIndexByName('TEST');
         self::assertEquals('TEST', $spreadsheet->getActiveSheet()->getTitle());

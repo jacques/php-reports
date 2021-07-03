@@ -6,14 +6,25 @@
 
 namespace Jacques\Reports;
 
+use Jacques\Reports\Traits\{
+    Borders
+};
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Excel
 {
+    use Borders;
+
+    /**
+     * @var \PhpOffice\PhpSpreadsheet\Spreadsheet
+     */
     private \PhpOffice\PhpSpreadsheet\Spreadsheet $spreadsheet;
 
+    /**
+     * @var \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
+     */
     private \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $sheet;
 
     /**
