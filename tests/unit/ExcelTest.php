@@ -61,6 +61,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
         $spreadsheet->applyAutoSize('A', 'C');
         $spreadsheet->applyHeaderStyleSingleRow('A1:C1');
         $spreadsheet->drawborders('A2:C2', 'outer');
+        $spreadsheet->drawborders('A1:C1', 'top', 'thick');
 
         $spreadsheet->createSheet('Summary');
         self::assertEquals('Summary', $spreadsheet->getActiveSheet()->getTitle());
@@ -169,6 +170,83 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
         $spreadsheet->setActiveSheetIndexByName('TEST');
 
         self::assertEquals('TEST', $spreadsheet->getActiveSheet()->getTitle());
+
+        $expected = [
+            'alignment' => [
+                'horizontal' => 'general',
+                'indent' => 0,
+                'readOrder' => 0,
+                'shrinkToFit' => false,
+                'textRotation' => 0,
+                'vertical' => 'bottom',
+                'wrapText' => false
+            ],
+            'borders' => [
+                'bottom' => [
+                    'borderStyle' => 'thin',
+                    'color' => [
+                        'argb' => 'FF000000'
+                    ]
+                ],
+                'diagonal' => [
+                    'borderStyle' => 'none',
+                    'color' => [
+                        'argb' => 'FF000000'
+                    ]
+                ],
+                'diagonalDirection' => 0,
+                'left' => [
+                    'borderStyle' => 'none',
+                    'color' => [
+                        'argb' => 'FF000000'
+                    ]
+                ],
+                'right' => [
+                    'borderStyle' => 'none',
+                    'color' => [
+                        'argb' => 'FF000000'
+                    ]
+                ],
+                'top' => [
+                    'borderStyle' => 'thin',
+                    'color' => [
+                        'argb' => 'FF000000'
+                    ]
+                ]
+            ],
+            'fill' => [
+                'endColor' => [
+                    'argb' => 'FFA0A0A0'
+                ],
+                'fillType' => 'solid',
+                'rotation' => 0,
+                'startColor' => [
+                    'argb' => 'FFA0A0A0'
+                ]
+            ],
+            'font' => [
+                'bold' => true,
+                'color' => [
+                    'argb' => 'FF000000'
+                ],
+                'italic' => false,
+                'name' => 'Gill Sans',
+                'size' => 12.0,
+                'strikethrough' => false,
+                'subscript' => false,
+                'superscript' => false,
+                'underline' => 'none'
+            ],
+            'numberFormat' => [
+                'formatCode' => 'General'
+            ],
+            'protection' => [
+                'locked' => 'inherit',
+                'hidden' => 'inherit'
+            ],
+            'quotePrefx' => false
+        ];
+        self::assertEquals($expected, $spreadsheet->getActiveSheet()->getStyle('A1')->exportArray());
 
         $expected = [
             'alignment' => [
@@ -323,6 +401,86 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
             'quotePrefx' => false
         ];
         self::assertEquals($expected, $spreadsheet->getActiveSheet()->getStyle('A3:C3')->exportArray());
+
+        $spreadsheet->setActiveSheetIndexByName('Summary');
+        self::assertEquals('Summary', $spreadsheet->getActiveSheet()->getTitle());
+
+        $expected = [
+            'alignment' => [
+                'horizontal' => 'general',
+                'indent' => 0,
+                'readOrder' => 0,
+                'shrinkToFit' => false,
+                'textRotation' => 0,
+                'vertical' => 'bottom',
+                'wrapText' => false
+            ],
+            'borders' => [
+                'bottom' => [
+                    'borderStyle' => 'none',
+                    'color' => [
+                        'argb' => 'FF000000'
+                    ]
+                ],
+                'diagonal' => [
+                    'borderStyle' => 'none',
+                    'color' => [
+                        'argb' => 'FF000000'
+                    ]
+                ],
+                'diagonalDirection' => 0,
+                'left' => [
+                    'borderStyle' => 'none',
+                    'color' => [
+                        'argb' => 'FF000000'
+                    ]
+                ],
+                'right' => [
+                    'borderStyle' => 'none',
+                    'color' => [
+                        'argb' => 'FF000000'
+                    ]
+                ],
+                'top' => [
+                    'borderStyle' => 'thick',
+                    'color' => [
+                        'argb' => 'FF000000'
+                    ]
+                ]
+            ],
+            'fill' => [
+                'endColor' => [
+                    'argb' => 'FFA0A0A0'
+                ],
+                'fillType' => 'solid',
+                'rotation' => 0,
+                'startColor' => [
+                    'argb' => 'FFA0A0A0'
+                ]
+            ],
+            'font' => [
+                'bold' => true,
+                'color' => [
+                    'argb' => 'FF000000'
+                ],
+                'italic' => false,
+                'name' => 'Gill Sans',
+                'size' => 12.0,
+                'strikethrough' => false,
+                'subscript' => false,
+                'superscript' => false,
+                'underline' => 'none'
+            ],
+            'numberFormat' => [
+                'formatCode' => 'General'
+            ],
+            'protection' => [
+                'locked' => 'inherit',
+                'hidden' => 'inherit'
+            ],
+            'quotePrefx' => false
+        ];
+        self::assertEquals($expected, $spreadsheet->getActiveSheet()->getStyle('A1')->exportArray());
 
         $sheet = $spreadsheet->getActiveSheet();
 
