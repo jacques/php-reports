@@ -60,7 +60,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
 
         $spreadsheet->applyAutoSize('A', 'C');
         $spreadsheet->applyHeaderStyleSingleRow('A1:C1');
-        $spreadsheet->drawborders($spreadsheet, 'A2:C2', 'outer');
+        $spreadsheet->drawborders('A2:C2', 'outer');
 
         $spreadsheet->createSheet('Summary');
         self::assertEquals('Summary', $spreadsheet->getActiveSheet()->getTitle());
@@ -97,7 +97,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
         $spreadsheet->setCellValue('E3', 'Africa');
 
         $spreadsheet->applyHeaderStylesMultipleRows('A1:E1', 'A2:E2');
-        $spreadsheet->drawborders($spreadsheet, 'A3:E3', 'all');
+        $spreadsheet->drawborders('A3:E3', 'all');
 
         $spreadsheet->setActiveSheetIndexByName('TEST');
         self::assertEquals('TEST', $spreadsheet->getActiveSheet()->getTitle());

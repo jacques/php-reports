@@ -11,16 +11,16 @@ trait Borders
     /**
      * Draws borders.
      *
-     * @param \Jacques\Report\Excel $report
      * @param string $coords
+     * @param string $type (all | top | bottom | left | right | outer)
      *
      * @void
      */
-    public function drawborders(\Jacques\Reports\Excel $report, string $coords, ?string $type = 'outer'): void
+    public function drawborders(string $coords, ?string $type = 'outer', ?string $style = 'thin'): void
     {
         switch ($type) {
             case 'all':
-                $report->getStyle($coords)
+                $this->sheet->getStyle($coords)
                     ->applyFromArray([
                         'borders' => [
                             'allBorders' => [
@@ -29,19 +29,31 @@ trait Borders
                         ],
                     ]);
                 break;
+            case 'top':
+                $this->sheet->getStyle($coords)
+                    ->getBorders()->getTop()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                break;
             case 'bottom':
-                $report->getStyle($coords)
+                $this->sheet->getStyle($coords)
                     ->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                break;
+            case 'left':
+                $this->sheet->getStyle($coords)
+                    ->getBorders()->getLeft()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                break;
+            case 'right':
+                $this->sheet->getStyle($coords)
+                    ->getBorders()->getRight()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
                 break;
             case 'outer':
             default:
-                $report->getStyle($coords)
+                $this->sheet->getStyle($coords)
                     ->getBorders()->getTop()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
-                $report->getStyle($coords)
+                $this->sheet->getStyle($coords)
                     ->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
-                $report->getStyle($coords)
+                $this->sheet->getStyle($coords)
                     ->getBorders()->getLeft()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
-                $report->getStyle($coords)
+                $this->sheet->getStyle($coords)
                     ->getBorders()->getRight()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
             break;
         }
