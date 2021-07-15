@@ -78,7 +78,7 @@ trait Borders
                     ->getBorders()->getLeft()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
                 $this->sheet->getStyle($coords)
                     ->getBorders()->getRight()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
-            break;
+                break;
         }
     }
 }
