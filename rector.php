@@ -17,7 +17,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $parameters->set(Option::PATHS, ['src', 'tests']);
 
-    foreach([
+    foreach ([
         SetList::CODE_QUALITY,
         SetList::CODE_QUALITY_STRICT,
         SetList::CODING_STYLE,
