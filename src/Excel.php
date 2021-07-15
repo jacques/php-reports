@@ -29,6 +29,8 @@ class Excel
 
     /**
      * Index of the active worksheet that we are working on.
+     *
+     * @var int
      */
     private int $activesheet = 0;
 
@@ -74,6 +76,19 @@ class Excel
     public function getProperties(): \PhpOffice\PhpSpreadsheet\Document\Properties
     {
         return $this->spreadsheet->getProperties();
+    }
+
+    /**
+     * Set the active sheet index by the name of the sheet.
+     *
+     * @param string $name
+     *
+     * @return void
+     */
+    public function setActiveSheetIndex(int $index): void
+    {
+        $this->spreadsheet->setActiveSheetIndex($index);
+        $this->sheet = $this->spreadsheet->getActiveSheet();
     }
 
     /**
