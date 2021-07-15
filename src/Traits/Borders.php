@@ -38,7 +38,7 @@ trait Borders
                 $style = \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK;
                 break;
             default:
-                throw \InvalidArgumentException(\sprintf('Unknown border style \'%s\' specified.', $style));
+                throw \InvalidArgumentException(\sprintf("Unknown border style '%s' specified.", $style));
         }
 
         switch ($type) {
