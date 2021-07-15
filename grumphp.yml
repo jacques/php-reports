@@ -1,6 +1,4 @@
-parameters:
-    git_dir: .
-    bin_dir: vendor/bin
+grumphp:
     tasks:
         composer_normalize: ~
         phpunit:
@@ -14,4 +12,6 @@ parameters:
             ignore_patterns:
               - tests/
             triggered_by: [php]
-        securitychecker: ~
+        securitychecker_enlightn:
+            lockfile: ./composer.lock
+            run_always: false
