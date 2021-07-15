@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 /**
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2018-2020 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2018-2021 Jacques Marneweck.  All rights strictly reserved.
  */
 
 namespace Jacques\Reports\Tests\Unit;
@@ -102,6 +102,12 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
         $spreadsheet->setActiveSheetIndexByName('TEST');
         self::assertEquals('TEST', $spreadsheet->getActiveSheet()->getTitle());
 
+        $expected = [
+            0 => 'TEST',
+            1 => 'Summary',
+        ];
+        self::assertEquals($expected, $spreadsheet->getSheetNames());
+
         self::assertEquals(0, $spreadsheet->getIndex($spreadsheet->getActiveSheet()));
 
         $spreadsheet->setActiveSheetIndexByName('Summary');
@@ -109,8 +115,20 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(1, $spreadsheet->getIndex($spreadsheet->getActiveSheet()));
         $spreadsheet->save('foo.xlsx');
 
+        $spreadsheet->setActiveSheetIndex(0);
+        self::assertEquals('TEST', $spreadsheet->getActiveSheet()->getTitle());
+        self::assertEquals(0, $spreadsheet->getIndex($spreadsheet->getActiveSheet()));
+        self::assertEquals('joe@example.com', $spreadsheet->getActiveSheet()->getCell('C2')->getFormattedValue());
+
+        $spreadsheet->setActiveSheetIndex(1);
+
+        self::assertEquals('Summary', $spreadsheet->getActiveSheet()->getTitle());
+        self::assertEquals(1, $spreadsheet->getIndex($spreadsheet->getActiveSheet()));
+        self::assertEquals('joe@example.com', $spreadsheet->getActiveSheet()->getCell('C3')->getFormattedValue());
+
         $spreadsheet->removeSheetByIndex(1);
         self::assertCount(1, $spreadsheet->getSheetNames());
+        self::assertEquals(['TEST'], $spreadsheet->getSheetNames());
         unset($spreadsheet);
 
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
