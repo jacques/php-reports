@@ -18,6 +18,29 @@ trait Borders
      */
     public function drawborders(string $coords, ?string $type = 'outer', ?string $style = 'thin'): void
     {
+        switch ($style) {
+            case 'dashdot':
+                $style = \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_DASHDOT;
+                break;
+            case 'dashdotdot':
+                $style = \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_DASHDOTDOT;
+                break;
+            case 'dashdotdot':
+                $style = \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_DOUBLE;
+                break;
+            case 'hair':
+                $style = \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_HAIR;
+                break;
+            case 'thin':
+                $style = \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN;
+                break;
+            case 'thick':
+                $style = \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK;
+                break;
+            default:
+                throw \InvalidArgumentException(\sprintf('Unknown border style \'%s\' specified.', $style));
+        }
+
         switch ($type) {
             case 'all':
                 $this->sheet->getStyle($coords)
