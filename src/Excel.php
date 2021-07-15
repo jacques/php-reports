@@ -6,9 +6,7 @@
 
 namespace Jacques\Reports;
 
-use Jacques\Reports\Traits\{
-    Borders
-};
+use Jacques\Reports\Traits\Borders;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -57,7 +55,7 @@ class Excel
      */
     public function createsheet(string $title): void
     {
-        $this->activesheet++;
+        ++$this->activesheet;
 
         $this->spreadsheet->createsheet();
         $this->spreadsheet->setActiveSheetIndex($this->activesheet);
@@ -193,14 +191,14 @@ class Excel
      */
     public function applyAutoSize(string $firstCell, string $lastCell): void
     {
-        $col = $firstCell;
         /** @psalm-suppress StringIncrement */
-        $lastCell++;
+        ++$lastCell;
+        $col = $firstCell;
 
         while ($col !== $lastCell) {
             $this->sheet->getColumnDimension($col)->setAutoSize(true);
             /** @psalm-suppress StringIncrement */
-            $col++;
+            ++$col;
         }
     }
 
@@ -217,12 +215,12 @@ class Excel
      */
     public function applySameSizePerColumn(string $firstCell, string $lastCell, float $size): void
     {
+        ++$lastCell;
         $col = $firstCell;
-        $lastCell++;
 
-        while ($col != $lastCell) {
+        while ($col !== $lastCell) {
             $this->sheet->getColumnDimension($col)->setWidth($size);
-            $col++;
+            ++$col;
         }
     }
 
@@ -240,11 +238,11 @@ class Excel
     public function applySizePerColumn(string $firstCell, string $lastCell, array $sizes): void
     {
         $col = $firstCell;
-        $lastCell++;
+        ++$lastCell;
 
-        while ($col != $lastCell) {
+        while ($col !== $lastCell) {
             $this->sheet->getColumnDimension($col)->setWidth($sizes[$col]);
-            $col++;
+            ++$col;
         }
     }
 
