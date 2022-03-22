@@ -1,3 +1,5 @@
+.DS_Store
+.idea
 1
 build
 composer.lock
