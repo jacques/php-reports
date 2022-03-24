@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 /**
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2018-2021 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2018-2022 Jacques Marneweck.  All rights strictly reserved.
  */
 
 namespace Jacques\Reports;
@@ -11,6 +11,23 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
+/**
+ * @method fromArray(array $source, $nullValue, $startCell, bool $strictNullComparison)
+ * @method getActiveSheet()
+ * @method getColumnDimension()
+ * @method getActiveSheetIndex()
+ * @method getHighestColumn($row)
+ * @method getHighestDataColumn($row)
+ * @method getHighestRow($column)
+ * @method getHighestDataRow($column)
+ * @method getHighestRowAndColumn()
+ * @method getDefaultStyle()
+ * @method getStyles()
+ * @method getStyle($cellCoordinate)
+ * @method getStyleByColumnAndRow($columnIndex1, $row1, $columnIndex2 = null, $row2 = null)
+ * @method setCellValue(string $coordinate, $value)
+ * @method setCellValueByColumnAndRow(int $columnIndex, int $row, $value)
+ */
 class Excel
 {
     use Borders;
