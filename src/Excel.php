@@ -7,6 +7,7 @@
 namespace Jacques\Reports;
 
 use Jacques\Reports\Traits\Borders;
+use Jacques\Reports\Traits\Margins;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -31,6 +32,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 class Excel
 {
     use Borders;
+    use Margins;
 
     /**
      * @var \PhpOffice\PhpSpreadsheet\Spreadsheet
