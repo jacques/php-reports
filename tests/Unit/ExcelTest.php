@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 /**
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2018-2021 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2018-2022 Jacques Marneweck.  All rights strictly reserved.
  */
 
 namespace Jacques\Reports\Tests\Unit;
@@ -208,7 +208,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
                     ]
                 ],
                 'top' => [
-                    'borderStyle' => 'thin',
+                    'borderStyle' => 'thick',
                     'color' => [
                         'argb' => 'FF000000'
                     ]
@@ -292,14 +292,8 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
                 ]
             ],
             'fill' => [
-                'endColor' => [
-                    'argb' => 'FF000000'
-                ],
                 'fillType' => 'none',
-                'rotation' => 0,
-                'startColor' => [
-                    'argb' => 'FFFFFFFF'
-                ]
+                'rotation' => 0.0,
             ],
             'font' => [
                 'bold' => false,
@@ -369,14 +363,8 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
                 ]
             ],
             'fill' => [
-                'endColor' => [
-                    'argb' => 'FF000000'
-                ],
                 'fillType' => 'none',
-                'rotation' => 0,
-                'startColor' => [
-                    'argb' => 'FFFFFFFF'
-                ]
+                'rotation' => 0.0,
             ],
             'font' => [
                 'bold' => false,
@@ -453,7 +441,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
                     'argb' => 'FFA0A0A0'
                 ],
                 'fillType' => 'solid',
-                'rotation' => 0,
+                'rotation' => 0.0,
                 'startColor' => [
                     'argb' => 'FFA0A0A0'
                 ]
