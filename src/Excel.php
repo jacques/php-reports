@@ -234,11 +234,13 @@ class Excel
      */
     public function applySameSizePerColumn(string $firstCell, string $lastCell, float $size): void
     {
+        /** @psalm-suppress StringIncrement */
         ++$lastCell;
         $col = $firstCell;
 
         while ($col !== $lastCell) {
             $this->sheet->getColumnDimension($col)->setWidth($size);
+            /** @psalm-suppress StringIncrement */
             ++$col;
         }
     }
@@ -257,10 +259,12 @@ class Excel
     public function applySizePerColumn(string $firstCell, string $lastCell, array $sizes): void
     {
         $col = $firstCell;
+        /** @psalm-suppress StringIncrement */
         ++$lastCell;
 
         while ($col !== $lastCell) {
             $this->sheet->getColumnDimension($col)->setWidth($sizes[$col]);
+            /** @psalm-suppress StringIncrement */
             ++$col;
         }
     }
