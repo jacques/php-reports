@@ -5,6 +5,7 @@
  */
 
 use Rector\Core\Configuration\Option;
+use Rector\Core\ValueObject\PhpVersion;
 use Rector\Php74\Rector\Property\TypedPropertyRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\SetList;
@@ -12,6 +13,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters = $containerConfigurator->parameters();
+    $parameters->set(Option::PHP_VERSION_FEATURES, PhpVersion::PHP_74);
 
     $services = $containerConfigurator->services();
 
@@ -19,7 +21,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     foreach ([
         SetList::CODE_QUALITY,
-        SetList::CODE_QUALITY_STRICT,
+        #SetList::CODE_QUALITY_STRICT,
         SetList::CODING_STYLE,
         #SetList::PERFORMANCE,
         PHPUnitSetList::PHPUNIT_60,
