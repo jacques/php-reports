@@ -10,16 +10,16 @@
     ],
     "require": {
         "php": "^7.4 || ^8.0",
-        "phpoffice/phpspreadsheet": "^1.23"
+        "phpoffice/phpspreadsheet": "^1.24"
     },
     "require-dev": {
-        "brick/varexporter": "^0.3.5",
-        "ergebnis/composer-normalize": "^2.25",
+        "brick/varexporter": "^0.3.7",
+        "ergebnis/composer-normalize": "^2.28",
         "phpunit/php-invoker": "^3.1",
         "phpunit/phpunit": "^9.5",
-        "rector/rector": "^0.12.21",
-        "squizlabs/php_codesniffer": "^3.6",
-        "vimeo/psalm": "^4.22"
+        "rector/rector": "^0.14.0",
+        "squizlabs/php_codesniffer": "^3.7",
+        "vimeo/psalm": "^4.26"
     },
     "config": {
         "optimize-autoloader": true,
