@@ -6,8 +6,9 @@
 
 namespace Jacques\Reports;
 
-use Jacques\Reports\Traits\Borders;
-use Jacques\Reports\Traits\Margins;
+use Jacques\Reports\Traits\{
+    Borders, Colour, Margins
+};
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -32,6 +33,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 class Excel
 {
     use Borders;
+    use Colour;
     use Margins;
 
     /**
@@ -280,6 +282,11 @@ class Excel
     {
         $writer = IOFactory::createWriter($this->spreadsheet, 'Xlsx');
         $writer->save($filename);
+    }
+
+    public function getWorksheet()
+    {
+        return $this->spreadsheet;
     }
 
     /**
