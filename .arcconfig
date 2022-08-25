@@ -1,0 +1,7 @@
+{
+    "repository.callsign" : "PRTS",
+    "phabricator.uri": "https://secure.siberia.co.za/",
+    "history.immutable" : false,
+    "unit.engine": "PhpunitTestEngine",
+    "unit.phpunit.binary": "./vendor/bin/phpunit"
+}
