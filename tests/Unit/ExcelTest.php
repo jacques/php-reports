@@ -208,7 +208,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
                     ]
                 ],
                 'top' => [
-                    'borderStyle' => 'thick',
+                    'borderStyle' => 'thin',
                     'color' => [
                         'argb' => 'FF000000'
                     ]
@@ -235,7 +235,14 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
                 'strikethrough' => false,
                 'subscript' => false,
                 'superscript' => false,
-                'underline' => 'none'
+                'underline' => 'none',
+                'baseLine' => 0,
+                'chartColor' => null,
+                'complexScript' => '',
+                'eastAsian' => '',
+                'latin' => '',
+                'strikeType' => '',
+                'underlineColor' => null,
             ],
             'numberFormat' => [
                 'formatCode' => 'General'
@@ -306,7 +313,14 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
                 'strikethrough' => false,
                 'subscript' => false,
                 'superscript' => false,
-                'underline' => 'none'
+                'underline' => 'none',
+                'baseLine' => 0,
+                'chartColor' => null,
+                'complexScript' => '',
+                'eastAsian' => '',
+                'latin' => '',
+                'strikeType' => '',
+                'underlineColor' => null,
             ],
             'numberFormat' => [
                 'formatCode' => 'General'
@@ -377,7 +391,14 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
                 'strikethrough' => false,
                 'subscript' => false,
                 'superscript' => false,
-                'underline' => 'none'
+                'underline' => 'none',
+                'baseLine' => 0,
+                'chartColor' => null,
+                'complexScript' => '',
+                'eastAsian' => '',
+                'latin' => '',
+                'strikeType' => '',
+                'underlineColor' => null,
             ],
             'numberFormat' => [
                 'formatCode' => 'General'
@@ -457,7 +478,14 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
                 'strikethrough' => false,
                 'subscript' => false,
                 'superscript' => false,
-                'underline' => 'none'
+                'underline' => 'none',
+                'baseLine' => 0,
+                'chartColor' => null,
+                'complexScript' => '',
+                'eastAsian' => '',
+                'latin' => '',
+                'strikeType' => '',
+                'underlineColor' => null,
             ],
             'numberFormat' => [
                 'formatCode' => 'General'
