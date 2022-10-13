@@ -173,7 +173,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
 
         $expected = [
             'alignment' => [
-                'horizontal' => 'general',
+                'horizontal' => '',
                 'indent' => 0,
                 'readOrder' => 0,
                 'shrinkToFit' => false,
@@ -257,7 +257,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
 
         $expected = [
             'alignment' => [
-                'horizontal' => 'general',
+                'horizontal' => '',
                 'indent' => 0,
                 'readOrder' => 0,
                 'shrinkToFit' => false,
@@ -335,7 +335,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
 
         $expected = [
             'alignment' => [
-                'horizontal' => 'general',
+                'horizontal' => '',
                 'indent' => 0,
                 'readOrder' => 0,
                 'shrinkToFit' => false,
@@ -416,7 +416,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
 
         $expected = [
             'alignment' => [
-                'horizontal' => 'general',
+                'horizontal' => '',
                 'indent' => 0,
                 'readOrder' => 0,
                 'shrinkToFit' => false,
