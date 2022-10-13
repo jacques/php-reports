@@ -60,6 +60,14 @@ class Excel
      */
     public function __construct(string $title)
     {
+        \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::setPaperSizeDefault(
+            \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4
+        );
+
+        \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::setOrientationDefault(
+            \PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE
+        );
+
         $this->spreadsheet = new Spreadsheet();
         $this->sheet = $this->spreadsheet->getActiveSheet();
 
