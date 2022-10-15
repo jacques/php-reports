@@ -11,9 +11,10 @@ use \InvalidArgumentException;
 trait Colour
 {
     /**
-     * Set the page margins.
+     * Set the cell background colour.
      *
-     * @param string $preset (narrow|normal|wide|custom)
+     * @param string $coords
+     * @param string $colour
      *
      * @void
      */
@@ -23,6 +24,22 @@ trait Colour
             ->getFill()
             ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
             ->getStartColor()
+            ->setARGB($colour);
+    }
+
+    /**
+     * Set the font colour.
+     *
+     * @param string $coords
+     * @param string $colour
+     *
+     * @void
+     */
+    public function setFontColour(string $coords, string $colour): void
+    {
+        $this->sheet->getStyle($coords)
+            ->getFont()
+            ->getColor()
             ->setARGB($colour);
     }
 }
