@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 /**
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2018-2022 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2018-2023 Jacques Marneweck.  All rights strictly reserved.
  */
 
 namespace Jacques\Reports;
@@ -289,6 +289,11 @@ class Excel
     public function save(string $filename): void
     {
         $writer = IOFactory::createWriter($this->spreadsheet, 'Xlsx');
+
+        // T313 - Need more speed with the PTA for report generation
+        // The EXL Tracking Report takes 10+ minutes to generate when the default to
+        // pre calculate formulas is on.
+        $writer->setPreCalculateFormulas(false);
         $writer->save($filename);
     }
 
