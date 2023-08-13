@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 /**
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2018-2022 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2018-2023 Jacques Marneweck.  All rights strictly reserved.
  */
 
 namespace Jacques\Reports\Tests\Unit;
@@ -9,7 +9,7 @@ namespace Jacques\Reports\Tests\Unit;
 use Brick\VarExporter\VarExporter;
 use Jacques\Reports\Excel;
 
-class ExcelTest extends \PHPUnit\Framework\TestCase
+final class ExcelTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -173,7 +173,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
 
         $expected = [
             'alignment' => [
-                'horizontal' => '',
+                'horizontal' => 'general',
                 'indent' => 0,
                 'readOrder' => 0,
                 'shrinkToFit' => false,
@@ -243,6 +243,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
                 'latin' => '',
                 'strikeType' => '',
                 'underlineColor' => null,
+                'scheme' => '',
             ],
             'numberFormat' => [
                 'formatCode' => 'General'
@@ -257,7 +258,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
 
         $expected = [
             'alignment' => [
-                'horizontal' => '',
+                'horizontal' => 'general',
                 'indent' => 0,
                 'readOrder' => 0,
                 'shrinkToFit' => false,
@@ -321,6 +322,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
                 'latin' => '',
                 'strikeType' => '',
                 'underlineColor' => null,
+                'scheme' => '',
             ],
             'numberFormat' => [
                 'formatCode' => 'General'
@@ -335,7 +337,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
 
         $expected = [
             'alignment' => [
-                'horizontal' => '',
+                'horizontal' => 'general',
                 'indent' => 0,
                 'readOrder' => 0,
                 'shrinkToFit' => false,
@@ -399,6 +401,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
                 'latin' => '',
                 'strikeType' => '',
                 'underlineColor' => null,
+                'scheme' => '',
             ],
             'numberFormat' => [
                 'formatCode' => 'General'
@@ -416,7 +419,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
 
         $expected = [
             'alignment' => [
-                'horizontal' => '',
+                'horizontal' => 'general',
                 'indent' => 0,
                 'readOrder' => 0,
                 'shrinkToFit' => false,
@@ -486,6 +489,7 @@ class ExcelTest extends \PHPUnit\Framework\TestCase
                 'latin' => '',
                 'strikeType' => '',
                 'underlineColor' => null,
+                'scheme' => '',
             ],
             'numberFormat' => [
                 'formatCode' => 'General'
