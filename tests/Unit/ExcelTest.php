@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 /**
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2018-2023 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2018-2024 Jacques Marneweck.  All rights strictly reserved.
  */
 
 namespace Jacques\Reports\Tests\Unit;
@@ -244,6 +244,7 @@ final class ExcelTest extends \PHPUnit\Framework\TestCase
                 'strikeType' => '',
                 'underlineColor' => null,
                 'scheme' => '',
+                'cap' => null,
             ],
             'numberFormat' => [
                 'formatCode' => 'General'
@@ -323,6 +324,7 @@ final class ExcelTest extends \PHPUnit\Framework\TestCase
                 'strikeType' => '',
                 'underlineColor' => null,
                 'scheme' => '',
+                'cap' => null,
             ],
             'numberFormat' => [
                 'formatCode' => 'General'
@@ -402,6 +404,7 @@ final class ExcelTest extends \PHPUnit\Framework\TestCase
                 'strikeType' => '',
                 'underlineColor' => null,
                 'scheme' => '',
+                'cap' => null,
             ],
             'numberFormat' => [
                 'formatCode' => 'General'
@@ -490,6 +493,7 @@ final class ExcelTest extends \PHPUnit\Framework\TestCase
                 'strikeType' => '',
                 'underlineColor' => null,
                 'scheme' => '',
+                'cap' => null,
             ],
             'numberFormat' => [
                 'formatCode' => 'General'
