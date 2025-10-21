@@ -1,9 +1,6 @@
 <?xml version="1.0"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="false" backupStaticAttributes="false" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" bootstrap="./bootstrap.php" verbose="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
-  <coverage processUncoveredFiles="false">
-    <include>
-      <directory suffix=".php">../src/</directory>
-    </include>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="false" colors="true" bootstrap="./bootstrap.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd" cacheDirectory=".phpunit.cache" backupStaticProperties="false">
+  <coverage>
     <report>
       <html outputDirectory="../build/coverage"/>
     </report>
@@ -12,4 +9,9 @@
     <directory>./</directory>
   </testsuite>
   <logging/>
+  <source>
+    <include>
+      <directory suffix=".php">../src/</directory>
+    </include>
+  </source>
 </phpunit>
