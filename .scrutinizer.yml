@@ -1,9 +1,3 @@
 build:
-  tests:
-    override:
-      - true
-    nodes:
-      tests:
-        environment:
-          php:
-            version: 8.2
+    environment:
+        php: 8.2.29
