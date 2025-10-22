@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 /**
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2018-2023 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2018-2025 Jacques Marneweck.  All rights strictly reserved.
  */
 
 namespace Jacques\Reports;
@@ -52,6 +52,16 @@ class Excel
      * @var int
      */
     private int $activesheet = 0;
+
+    /**
+     * Precalculate formulas.
+     *
+     * T313 - Need more speed with the PTA for report generation
+     * The EXL Tracking Report takes 10+ minutes to generate when the default to
+     * pre calculate formulas is on.  The Concentrix Tracking Report is taking 15
+     * minutes to generate for The Helix site with the option disabled.
+     */
+    private bool $precaculateformulas = false;
 
     /**
      * Creates a new spreadsheet.
@@ -129,6 +139,17 @@ class Excel
     {
         $this->spreadsheet->setActiveSheetIndexByName($name);
         $this->sheet = $this->spreadsheet->getActiveSheet();
+    }
+
+    /**
+     * Enable / Disable precalculated formulas
+     *
+     * @param bool $precaculateformulas
+     * @return void
+     */
+    public function setPreCalculateFormulas(bool $precaculateformulas): bool
+    {
+        $this->precaculateformulas = $precaculateformulas;
     }
 
     /**
@@ -288,12 +309,13 @@ class Excel
      */
     public function save(string $filename): void
     {
+        if (empty($filename)) {
+            throw new \InvalidArgumentException('Please pass in a filename.');
+        }
+
         $writer = IOFactory::createWriter($this->spreadsheet, 'Xlsx');
 
-        // T313 - Need more speed with the PTA for report generation
-        // The EXL Tracking Report takes 10+ minutes to generate when the default to
-        // pre calculate formulas is on.
-        $writer->setPreCalculateFormulas(false);
+        $writer->setPreCalculateFormulas($this->precaculateformulas);
         $writer->save($filename);
     }
 
