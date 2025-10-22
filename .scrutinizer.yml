@@ -1,0 +1,9 @@
+build:
+  tests:
+    override:
+      - true
+    nodes:
+      tests:
+        environment:
+          php:
+            version: 8.2
