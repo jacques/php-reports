@@ -4,6 +4,8 @@
 build
 composer.lock
 foo.xlsx
+tests/.phpunit.cache/
 tests/.phpunit.result.cache
+tests/phpunit.xml.bak
 vendor
 ~$foo.xlsx
