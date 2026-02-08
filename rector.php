@@ -1,41 +1,41 @@
 <?php declare(strict_types=1);
 /**
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2020-2021 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2014-2026 Jacques Marneweck.  All rights strictly reserved.
  */
 
-use Rector\Core\Configuration\Option;
-use Rector\Core\ValueObject\PhpVersion;
-use Rector\Php74\Rector\Property\TypedPropertyRector;
+use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
+use Rector\CodeQuality\Rector\FuncCall\CompactToVariablesRector;
+use Rector\Config\RectorConfig;
 use Rector\PHPUnit\Set\PHPUnitSetList;
+use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $parameters = $containerConfigurator->parameters();
-    $parameters->set(Option::PHP_VERSION_FEATURES, PhpVersion::PHP_74);
+return static function (RectorConfig $rectorConfig): void {
+    $rectorConfig->paths([
+        __DIR__ . '/src',
+        __DIR__ . '/tests',
+    ]);
 
-    $services = $containerConfigurator->services();
+    // register a single rule
+    $rectorConfig->rule(CompactToVariablesRector::class);
 
-    $parameters->set(Option::PATHS, ['src', 'tests']);
+    $rectorConfig->parallel(900, 16, 10);
 
-    foreach ([
+    // define sets of rules
+    $rectorConfig->sets([
+        LevelSetList::UP_TO_PHP_82,
+        PHPUnitSetList::ANNOTATIONS_TO_ATTRIBUTES,
+        PHPUnitSetList::PHPUNIT_110,
+        PHPUnitSetList::PHPUNIT_CODE_QUALITY,
+        SetList::CARBON,
         SetList::CODE_QUALITY,
-        #SetList::CODE_QUALITY_STRICT,
         SetList::CODING_STYLE,
-        #SetList::PERFORMANCE,
-        PHPUnitSetList::PHPUNIT_60,
-        PHPUnitSetList::PHPUNIT_70,
-        PHPUnitSetList::PHPUNIT_75,
-        PHPUnitSetList::PHPUNIT_80,
-        PHPUnitSetList::PHPUNIT_90,
-        PHPUnitSetList::PHPUNIT_91,
-        SetList::PHP_70,
-        SetList::PHP_71,
-        SetList::PHP_72,
-        SetList::PHP_73,
-        SetList::PHP_74,
-    ] as $set) {
-        $containerConfigurator->import($set);
-    }
+        SetList::DEAD_CODE,
+        SetList::EARLY_RETURN,
+        SetList::PHP_82,
+        SetList::PRIVATIZATION,
+        SetList::STRICT_BOOLEANS,
+        SetList::TYPE_DECLARATION,
+    ]);
 };
