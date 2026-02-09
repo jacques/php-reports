@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 /**
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2018-2025 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2018-2026 Jacques Marneweck.  All rights strictly reserved.
  */
 
 namespace Jacques\Reports;
@@ -83,6 +83,14 @@ class Excel
 
         $this->sheet->setShowGridlines(true);
         $this->sheet->setTitle($title);
+    }
+
+    public function loadTemplate(string $filename)
+    {
+        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        $this->spreadsheet = $reader->load($filename);
+
+        $this->sheet = $this->spreadsheet->getActiveSheet();
     }
 
     /**
